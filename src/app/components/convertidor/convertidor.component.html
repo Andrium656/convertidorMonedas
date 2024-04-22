@@ -1,0 +1,36 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label for="cantidad">Ingrese Cantidad</label>
+                <input type="number" class="form-control form-control-lg" [(ngModel)]="cantidad" (input)="convertir()"
+                            id="cantidad" placeholder="400 USD" >
+              </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="tengo">Moneda a Convertir</label>
+                <!-- El metodo (change) llamara al metodo convertor cada vez que el usuario haga algun cambio  (change)="convertir()-->
+                <select class="form-control form-control-lg" id="tengo" [(ngModel)] = 'tengo' (change)="convertir()">
+                    <option *ngFor="let moneda of monedas">{{moneda}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+            <label for="quiero">Tipo de conversión</label>
+                <!-- De esa manera cada vez que el cliente selecione una moneda se guardara dentro de la variable tengo [(ngModel)] = 'tengo' -->
+                <select class="form-control form-control-lg" id="quiero" [(ngModel)] = 'quiero' (change)="convertir()">
+                    <option *ngFor="let moneda of monedas">{{moneda}}</option>>
+                </select>
+            </div>
+        </div>
+    </div>
+    <h5 *ngIf="cantidad > 0" class="text-center mt-3">
+        <span class="badge bg-success">{{ cantidad }} {{ tengo }}</span>
+        <span class="badge bg-light">SON</span>
+        <span class="badge bg-success">{{total}} {{quiero}}</span>
+    </h5>
+</div>
